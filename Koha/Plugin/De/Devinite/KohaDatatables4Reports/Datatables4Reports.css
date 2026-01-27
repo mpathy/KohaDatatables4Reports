@@ -1,0 +1,136 @@
+/* DataTables Anpassungen fuer Koha */
+.dataTables_wrapper {
+    margin-top: 1em;
+}
+
+.dataTables_filter {
+    float: right;
+}
+
+.dataTables_filter label {
+    font-weight: normal;
+}
+
+.dataTables_filter input {
+    margin-left: 0.5em;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.dataTables_length {
+    float: left;
+}
+
+.dataTables_length label {
+    font-weight: normal;
+}
+
+.dataTables_length select {
+    margin: 0 0.5em;
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.dataTables_info {
+    float: left;
+    padding-top: 0.755em;
+}
+
+.dataTables_paginate {
+    float: right;
+    text-align: right;
+    padding-top: 0.25em;
+}
+
+.dataTables_paginate .paginate_button {
+    box-sizing: border-box;
+    display: inline-block;
+    min-width: 1.5em;
+    padding: 0.5em 1em;
+    margin-left: 2px;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    color: #333 !important;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+
+.dataTables_paginate .paginate_button.current,
+.dataTables_paginate .paginate_button.current:hover {
+    color: #333 !important;
+    border: 1px solid #979797;
+    background-color: white;
+}
+
+.dataTables_paginate .paginate_button.disabled,
+.dataTables_paginate .paginate_button.disabled:hover,
+.dataTables_paginate .paginate_button.disabled:active {
+    cursor: default;
+    color: #666 !important;
+    border: 1px solid transparent;
+    background: transparent;
+}
+
+.dataTables_paginate .paginate_button:hover {
+    color: white !important;
+    border: 1px solid #111111;
+    background-color: #585858;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+    padding: 10px 18px;
+    border-bottom: 1px solid #111;
+}
+
+table.dataTable.no-footer {
+    border-bottom: 1px solid #111;
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+
+.dataTables_processing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    margin-left: -100px;
+    margin-top: -26px;
+    text-align: center;
+    padding: 1em;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+/* Verbessere die Lesbarkeit */
+.dataTables_wrapper table {
+    font-size: 0.95em;
+}
+
+/* Scrollbare Tabellen */
+.dataTables_scrollBody {
+    border-left: 1px solid #111;
+}
+
+.bottom {
+    margin-top: 1em;
+}
+
+.top {
+    margin-bottom: 1em;
+}
+
+.clear {
+    clear: both;
+}
