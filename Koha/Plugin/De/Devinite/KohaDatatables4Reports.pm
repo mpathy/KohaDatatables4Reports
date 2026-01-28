@@ -2,19 +2,18 @@ package Koha::Plugin::De::Devinite::KohaDatatables4Reports;
 
 use Modern::Perl;
 use base qw(Koha::Plugins::Base);
-use C4::Context;
 
-our $VERSION = "0.0.1";
+our $VERSION = "0.0.19";
 
 our $metadata = {
-    name            => 'Reports with DataTables',
+    name            => 'Reports with additional DataTables View',
     author          => 'Markus Majer',
     date_authored   => '2026-01-21',
-    date_updated    => '2026-01-27',
-    minimum_version => '22.11.00.000',
+    date_updated    => '2026-02-12',
+    minimum_version => '24.11.00.000',
     maximum_version => undef,
     version         => $VERSION,
-    description     => 'Adds DataTables to Koha Reports (auto-loads all pages if < 2000 results)',
+    description     => 'Adds an interactive DataTables view to Koha report results (and other nice features).',
 };
 
 sub new {
@@ -40,14 +39,22 @@ sub uninstall {
     return 1;
 }
 
+sub configure {
+    my ( $self, $args ) = @_;
+    my $template = $self->get_template({ file => 'configure.tt' });
+    $self->output_html( $template->output() );
+}
+
 sub intranet_js {
     my ( $self ) = @_;
-    return "<script>".read_file( abs_path( $self->mbf_path('Datatables4Reports.js') ) )."</script>";
+    my $js = $self->mbf_read('Datatables4Reports.js');
+    return "<script>$js</script>";
 }
 
 sub intranet_head {
     my ( $self ) = @_;
-    return "<style>".read_file( abs_path( $self->mbf_path('Datatables4Reports.css') ) )."</style>";
+    my $css = $self->mbf_read('Datatables4Reports.css');
+    return "<style>$css</style>";
 }
 
 1;
