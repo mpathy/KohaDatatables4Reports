@@ -26,8 +26,8 @@
 
             <h1><i class="fa fa-table"></i> DataTables for Reports</h1>
 
-            <p>This plugin adds an interactive <strong>"Open in DataTables"</strong> button to Koha report results.
-               It fetches all report data via the built-in CSV export and replaces the standard paginated table
+            <p>This plugin adds an interactive <strong>"Open in DataTables"</strong> button to Koha report results.</p>
+            <p>It fetches all report data via the built-in CSV export and replaces the standard paginated table
                with a full-featured DataTables view.</p>
 
             <h3>How to use</h3>
