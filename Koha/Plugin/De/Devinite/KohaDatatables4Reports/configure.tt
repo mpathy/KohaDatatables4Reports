@@ -24,45 +24,35 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
 
-            <div class="panel panel-default" style="margin-top: 30px;">
-                <div class="panel-heading">
-                    <h2><i class="fa fa-table"></i> DataTables for Reports</h2>
-                </div>
-                <div class="panel-body">
-                    <p>This plugin adds an interactive <strong>"Open in DataTables"</strong> button to your Koha report results.
-                       It fetches all report data and replaces the standard paginated table with a full-featured DataTables view.</p>
+            <h1><i class="fa fa-table"></i> DataTables for Reports</h1>
 
-                    <h4>How to use:</h4>
-                    <ol>
-                        <li>Go to <a href="/cgi-bin/koha/reports/guided_reports.pl">Reports</a> and run any saved report</li>
-                        <li>Click the green <strong>"Open in DataTables"</strong> button in the toolbar</li>
-                        <li>Click <strong>"Back to original view"</strong> to return to the standard table</li>
-                    </ol>
+            <p>This plugin adds an interactive <strong>"Open in DataTables"</strong> button to Koha report results.
+               It fetches all report data via the built-in CSV export and replaces the standard paginated table
+               with a full-featured DataTables view.</p>
 
-                    <h4>Features:</h4>
-                    <ul>
-                        <li>Fast sorting by any column (click header)</li>
-                        <li>Full-text search across all columns</li>
-                        <li>Adjustable page size (10 / 25 / 50 / 100 / 250 / 500 / All)</li>
-                        <li>Column visibility toggle (show/hide columns)</li>
-                        <li>Column resize (drag right edge of header)</li>
-                        <li>Fixed header (stays visible while scrolling)</li>
-                        <li>Export filtered data as CSV, Excel (XLSX) or PDF</li>
-                        <li>Copy filtered to clipboard or print directly in the browser</li>
-                    </ul>
-                </div>
-            </div>
+            <h3>How to use</h3>
+            <ol>
+                <li>Go to <a href="/cgi-bin/koha/reports/guided_reports.pl">Reports</a> and run any saved report.</li>
+                <li>Click the green <strong>"Open in DataTables"</strong> button in the toolbar.</li>
+                <li>Click <strong>"Back to original view"</strong> to return to the standard Koha table.</li>
+            </ol>
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-cog"></i> Configuration</h3>
-                </div>
-                <div class="panel-body">
-                    <p class="text-muted">There are no user-configurable settings at the moment.<br>
-                    Future versions may allow customization of certain datatable settings.<br>
-                    This feature will be included when Koha adds an up-to-date version of DataTables.</p>
-                </div>
-            </div>
+            <h3>Features</h3>
+            <ul>
+                <li><strong>Sorting</strong> &mdash; click any column header to sort ascending/descending</li>
+                <li><strong>Full-text search</strong> &mdash; filters across all columns in real time</li>
+                <li><strong>Page size</strong> &mdash; adjustable (10 / 25 / 50 / 100 / 250 / 500 / All)</li>
+                <li><strong>Column visibility</strong> &mdash; show or hide individual columns via the "Columns" button</li>
+                <li><strong>Column resize</strong> &mdash; drag the right edge of any header to adjust width</li>
+                <li><strong>Fixed header</strong> &mdash; column headers stay visible while scrolling</li>
+                <li><strong>Fit To Page + Word Wrap</strong> &mdash; toggle button to constrain the table to the window width and enable word wrap in all cells</li>
+                <li><strong>Export</strong> &mdash; export the currently filtered and sorted data as Copy, CSV (semicolon-separated), Excel (XLSX), PDF (landscape) or Print</li>
+                <li><strong>Sidebar auto-hide</strong> &mdash; the Koha sidebar is hidden in DataTables view to maximize table space and restored when switching back</li>
+            </ul>
+
+            <h3>Configuration</h3>
+            <p class="text-muted">There are no user-configurable settings at the moment.
+               Future versions may add customization options (e.g. default page size, export format preferences).</p>
 
         </div>
     </div>

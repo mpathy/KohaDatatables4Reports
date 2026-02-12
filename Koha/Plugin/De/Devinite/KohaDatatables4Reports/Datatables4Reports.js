@@ -63,7 +63,6 @@
         // ===================================================================
         // DOM HELPERS — find Koha page elements that need to be hidden/shown
         // ===================================================================
-
         // Koha's report page has two elements with id="toolbar":
         // 1. The outer toolbar (reports-toolbar.inc) with main action buttons
         // 2. An inner toolbar inside .page-section with "Batch operations", "Rows per page" etc.
@@ -113,7 +112,6 @@
         // =================================================================
         // ACTIVATE — fetch CSV data, build DataTable
         // =================================================================
-
         function activateDataTables() {
             btn.disabled = true;
             btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Loading...';
@@ -152,7 +150,6 @@
         // =================================================================
         // BUILD — create container, table, initialize DataTable
         // =================================================================
-
         function buildDataTablesView() {
             // Hide Koha's original table, pagination, toolbar, results count
             setOriginalElementsVisible(false);
@@ -198,7 +195,7 @@
 
             // Initialize DataTable
             // ==================== 
-            // DOM layout: topbar (length + filter + buttons) | sub-topbar (info + pagination) | table | sub-topbar (info + pagination)
+            // Layout = topbar (length + filter + buttons) | sub-topbar (info + pagination) | table | sub-topbar (info + pagination)
             dtInstance = $('#dt4r-table').DataTable({
                 data: allData,
                 pageLength: 100,
@@ -275,7 +272,7 @@
 
             // Insert "Fit To Page + Word Wrap" toggle button before the Columns button.
             // When active it constrains the table to the container width and enables word wrap,
-            // which is also respected by the Print and PDF export buttons.
+            // which is also respected by the Print (CSS) and PDF export buttons.
             var dtButtons = container.querySelector('.dt-buttons');
             if (dtButtons) {
                 var fitBtn = document.createElement('button');
@@ -312,7 +309,6 @@
             }
 
             // Enable column resize via drag handles on <th> elements
-            // TODO: Change to DataTables Resize after Koha updates their DataTables version.
             enableColumnResize(table);
 
             // Switch button to "back" state
@@ -323,9 +319,11 @@
 
         }
 
-        // ========================================================================
+        // =====================================================================================
         // COLUMN RESIZE — drag handles on table headers for manual size adjustment
-        // ========================================================================
+        // -------------------------------------------------------------------------------------
+        // TODO: Change to native DataTables Resize after Koha updates their DataTables version.
+        // =====================================================================================
         function enableColumnResize(tableEl) {
             var resizeActive = false;  // becomes true after first resize (switches to table-layout:fixed)
             var dragHappened = false;   // true during a drag, used to suppress sort click
@@ -392,7 +390,6 @@
         // =================================================================
         // RESTORE — destroy DataTable, show original Koha elements
         // =================================================================
-
         function restoreOriginalView() {
             var container = document.getElementById('dt4r-container');
             if (container) {
@@ -422,7 +419,6 @@
         // =====================================================================
         // CSV PARSER — handles UTF-8 BOM, auto-detects delimiter, quoted fields
         // =====================================================================
-
         function parseCSV(text) {
             // Strip UTF-8 BOM if present
             if (text.charCodeAt(0) === 0xFEFF) text = text.substring(1);
@@ -430,7 +426,7 @@
             text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
             // Auto-detect delimiter by counting commas vs semicolons in the header line
-            // If someone asks why this is necessary, dont we know what delimiter we geht in Koha? Well no:
+            // If someone asks why this is necessary, dont we know what delimiter we get in Koha? Well, no. :-/
             // Koha's CSV export uses semicolons when the system language uses comma as decimal separator, and commas otherwise.
             var firstLine = text.split('\n')[0] || '';
             var commas = 0, semicolons = 0, inQ = false;

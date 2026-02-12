@@ -3,17 +3,17 @@ package Koha::Plugin::De::Devinite::KohaDatatables4Reports;
 use Modern::Perl;
 use base qw(Koha::Plugins::Base);
 
-our $VERSION = "0.0.19";
+our $VERSION = "0.0.20";
 
 our $metadata = {
-    name            => 'Reports with additional DataTables View',
+    name            => 'Reports with added DataTables Functionality',
     author          => 'Markus Majer',
     date_authored   => '2026-01-21',
     date_updated    => '2026-02-12',
     minimum_version => '24.11.00.000',
     maximum_version => undef,
     version         => $VERSION,
-    description     => 'Adds an interactive DataTables view to Koha report results (and other nice features).',
+    description     => 'Adds an interactive DataTables view to Koha report results with added features.',
 };
 
 sub new {
