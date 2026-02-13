@@ -60,9 +60,9 @@
             }
         });
 
-        // ===================================================================
+        // ======================================================================================
         // DOM HELPERS — find Koha page elements that need to be hidden/shown
-        // ===================================================================
+        // ======================================================================================
 
         // Toggle visibility of all original children inside .page-section.
         // This works across Koha versions: older versions use <div class="pages"> for pagination
@@ -81,9 +81,9 @@
             }
         }
 
-        // =================================================================
+        // ======================================================================================
         // ACTIVATE — fetch CSV data, build DataTable
-        // =================================================================
+        // ======================================================================================
         function activateDataTables() {
             btn.disabled = true;
             btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Loading...';
@@ -119,9 +119,9 @@
                 });
         }
 
-        // =================================================================
+        // ==============================================================================================
         // BUILD — create container, table, initialize DataTable
-        // =================================================================
+        // ==============================================================================================
         function buildDataTablesView() {
             // Hide Koha's original table, pagination, toolbar, results count
             setOriginalElementsVisible(false);
@@ -163,9 +163,11 @@
                 pageSection.insertBefore(container, pageSection.firstChild);
             }
 
+            // ============================================================================================================
             // Initialize DataTable
-            // ==================== 
-            // Layout = topbar (length + filter + buttons) | sub-topbar (info + pagination) | table | sub-topbar (info + pagination)
+            // ============================================================================================================ 
+            // topbar (length + filter + buttons) | sub-topbar (info + pagination) | table | sub-topbar (info + pagination)
+            // ============================================================================================================
             dtInstance = $('#dt4r-table').DataTable({
                 data: allData,
                 pageLength: 100,
@@ -357,33 +359,16 @@
             });
         }
 
-        // =================================================================
-        // RESTORE — destroy DataTable, show original Koha elements
-        // =================================================================
+        // ==================================================================================================================
+        // RESTORE — simply reload the page to guarantee a clean state. This is the safest approach across all Koha versions.
+        // The changes made in the DataTables view (hiding elements, adding classes) are all reverted on page reload, though.
+        // But this approach ensures that we dont run into any edge cases where some elements remain hidden or styles remain 
+        // after switching back and forth a few times. 
+        // TODO: It is a minor inconvenience, but with a newer (and complete!) version of DataTables in Koha itself we could 
+        // implement this very easily with the "StateRestore" extension: https://datatables.net/extensions/staterestore/
+        // ==================================================================================================================
         function restoreOriginalView() {
-            var container = document.getElementById('dt4r-container');
-            if (container) {
-                if (dtInstance) {
-                    dtInstance.destroy();
-                    dtInstance = null;
-                }
-                container.parentNode.removeChild(container);
-            }
-
-            // Restore sidebar if it was hidden
-            var sidebarCol = document.querySelector('.col-md-2.order-md-1, .col-md-12.order-md-1');
-            var mainCol = document.querySelector('.col-md-12.order-md-2, .col-md-10.order-md-2');
-            if (sidebarCol) sidebarCol.style.display = '';
-            if (mainCol) {
-                mainCol.classList.remove('col-md-12');
-                mainCol.classList.add('col-md-10');
-            }
-
-            setOriginalElementsVisible(true);
-
-            isActive = false;
-            btn.innerHTML = '<i class="fa fa-table"></i> Open in DataTables';
-            btn.className = 'btn btn-default dt4r-btn';
+            window.location.reload();
         }
 
         // =====================================================================
