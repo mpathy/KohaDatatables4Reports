@@ -63,50 +63,22 @@
         // ===================================================================
         // DOM HELPERS — find Koha page elements that need to be hidden/shown
         // ===================================================================
-        // Koha's report page has two elements with id="toolbar":
-        // 1. The outer toolbar (reports-toolbar.inc) with main action buttons
-        // 2. An inner toolbar inside .page-section with "Batch operations", "Rows per page" etc.
-        // This finds ONLY the inner one by checking for the additional .btn-toolbar class.
-        function findInnerToolbar() {
-            var origTable = document.getElementById('report_results');
-            if (!origTable) return null;
-            var siblings = origTable.parentNode.children;
-            for (var i = 0; i < siblings.length; i++) {
-                if (siblings[i].id === 'toolbar' && siblings[i].classList.contains('btn-toolbar')) {
-                    return siblings[i];
-                }
-            }
-            return null;
-        }
 
-        // Finds the "Total number of results: X (Y shown)" paragraph.
-        // It's located inside .page-section and identified by a span.label with matching text.
-        function findTotalResultsP() {
-            var pageSection = document.querySelector('.page-section');
-            if (!pageSection) return null;
-            var labels = pageSection.querySelectorAll('span.label');
-            for (var i = 0; i < labels.length; i++) {
-                if (labels[i].textContent.indexOf('Total number of results') !== -1) {
-                    return labels[i].closest('p');
-                }
-            }
-            return null;
-        }
-
-        // Toggle visibility of Koha's original report elements
+        // Toggle visibility of all original children inside .page-section.
+        // This works across Koha versions: older versions use <div class="pages"> for pagination
+        // (no ID), newer versions use <nav id="pagination_top/bottom">. By hiding ALL children
+        // of .page-section we cover both layouts without needing version-specific selectors.
+        // Our DataTables container is excluded because it gets a data attribute marker.
         function setOriginalElementsVisible(visible) {
+            var pageSection = document.querySelector('.page-section');
+            if (!pageSection) return;
             var display = visible ? '' : 'none';
-            var origTable = document.getElementById('report_results');
-            var paginationTop = document.getElementById('pagination_top');
-            var paginationBottom = document.getElementById('pagination_bottom');
-            var innerToolbar = findInnerToolbar();
-            var totalResultsP = findTotalResultsP();
-
-            if (origTable) origTable.style.display = display;
-            if (paginationTop) paginationTop.style.display = display;
-            if (paginationBottom) paginationBottom.style.display = display;
-            if (innerToolbar) innerToolbar.style.display = display;
-            if (totalResultsP) totalResultsP.style.display = display;
+            var children = pageSection.children;
+            for (var i = 0; i < children.length; i++) {
+                if (!children[i].hasAttribute('data-dt4r')) {
+                    children[i].style.display = display;
+                }
+            }
         }
 
         // =================================================================
@@ -154,9 +126,10 @@
             // Hide Koha's original table, pagination, toolbar, results count
             setOriginalElementsVisible(false);
 
-            // Container
+            // Container (data-dt4r attribute marks it as ours, so setOriginalElementsVisible skips it)
             var container = document.createElement('div');
             container.id = 'dt4r-container';
+            container.setAttribute('data-dt4r', '1');
 
             // Info bar with row count
             var infoBar = document.createElement('div');
@@ -184,13 +157,10 @@
             table.appendChild(document.createElement('tbody'));
             container.appendChild(table);
 
-            // Insert container before the original table
-            var origTable = document.getElementById('report_results');
+            // Insert container as first child of .page-section (above the hidden original elements)
             var pageSection = document.querySelector('.page-section');
-            if (origTable) {
-                origTable.parentNode.insertBefore(container, origTable);
-            } else if (pageSection) {
-                pageSection.appendChild(container);
+            if (pageSection) {
+                pageSection.insertBefore(container, pageSection.firstChild);
             }
 
             // Initialize DataTable
