@@ -27,9 +27,6 @@
         var csvLink = document.querySelector('a#csv[href*="op=export"]');
         if (!csvLink) return;
 
-        // Get report ID from URL parameters
-        var reportId = urlParams.get('id');
-
         // Reuse the existing CSV export URL (already has all correct parameters)
         var csvUrl = csvLink.getAttribute('href');
 

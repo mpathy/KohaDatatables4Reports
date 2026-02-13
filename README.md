@@ -47,3 +47,7 @@ User-configurable settings will be added there in future versions, but is postpo
 
 Bug reports are welcome via [GitHub Issues](../../issues) of my repository.
 You can also reach me in the Koha Community Chat: https://chat.koha-community.org/ — my nickname is @markus
+
+## License
+
+This plugin is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html), the same license as Koha itself.
