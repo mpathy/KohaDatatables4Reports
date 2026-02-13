@@ -10,7 +10,7 @@ by users who don't have the sufficient rights to edit a report itself.
 
 ## Features
 
-These are mostly DataTables features from the version that was already included in Koha (DataTables 2.1.8).
+These are mostly DataTables features from the version that was already included in Koha (DataTables 2.1.8):
 
 - **Sorting** — click any column header
 - **Full-text search** — filters across all columns in real time
@@ -18,8 +18,8 @@ These are mostly DataTables features from the version that was already included 
 - **Column visibility** — show or hide individual columns
 - **Column resize** — drag the right edge of any header
 - **Fixed header** — column headers stay visible while scrolling
-- **Fit To Page + Word Wrap** — toggle to constrain the table to window width
-- **Export** — Copy, CSV, Excel, PDF or Print (respects current filter, sort and visible columns)
+- **Fit To Page + Word Wrap** — toggle to constrain the table to window or page width
+- **Export filtered data** — Copy, CSV, Excel, PDF or Print (**respects current filter, sort and columns visibility**)
 
 ## Requirements
 
