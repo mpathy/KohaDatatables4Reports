@@ -255,9 +255,19 @@
                 dtButtons.insertBefore(fitBtn, dtButtons.firstChild);
 
                 fitBtn.addEventListener('click', function () {
+                    var activating = !table.classList.contains('dt4r-fitpage');
                     table.classList.toggle('dt4r-wrap');
                     table.classList.toggle('dt4r-fitpage');
                     fitBtn.classList.toggle('active');
+
+                    // Removal of custom user resize when activating: Clear any inline widths set by column resize so that 
+                    // table-layout:fixed can distribute columns evenly, and isnt overextended by previously set widths.
+                    if (activating) {
+                        table.style.tableLayout = '';
+                        table.querySelectorAll('thead th').forEach(function (th) {
+                            th.style.width = '';
+                        });
+                    }
                 });
 
                 // Insert "Export filtered data to" label before the first export button
