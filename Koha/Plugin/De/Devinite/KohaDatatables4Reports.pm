@@ -3,7 +3,7 @@ package Koha::Plugin::De::Devinite::KohaDatatables4Reports;
 use Modern::Perl;
 use base qw(Koha::Plugins::Base);
 
-our $VERSION = "0.0.20";
+our $VERSION = "0.1.0";
 
 our $metadata = {
     name            => 'Reports with added DataTables Functionality',
