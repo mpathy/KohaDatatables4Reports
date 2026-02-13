@@ -40,7 +40,7 @@ Upload the resulting `.kpz` file via **Koha Administration → Plugins → Uploa
 
 ## Documentation
 
-Feature documentation is available on the plugin's configure page inside Kohav(**Plugins → DataTables for Reports → Configure**).
+Feature documentation is available on the plugin's configure page inside Koha (**Plugins → DataTables for Reports → Configure**).
 User-configurable settings will be added there in future versions, but is postponed for now until Koha includes more recent DataTable versions.
 
 ## Contact
